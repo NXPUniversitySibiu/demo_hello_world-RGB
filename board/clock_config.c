@@ -15,7 +15,7 @@
 product: Clocks v7.0
 processor: S32K144
 package_id: S32K144_LQFP100
-mcu_data: s32sdk_s32k1xx_rtm_402
+mcu_data: s32sdk_s32k1xx_rtm_401
 processor_version: 0.0.0
  * BE CAREFUL MODIFYING THIS COMMENT - IT IS YAML SETTINGS FOR TOOLS **********/
 
