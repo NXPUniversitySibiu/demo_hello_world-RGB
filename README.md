@@ -1,7 +1,10 @@
 # Environment Setup
 
 This repository contains material related to NXP's University program.  
-It is a step-by-step tutorial for environment setup.
+This project implement de RED-YELLOW-BLUE blink actions.
+It will turn on the three colors in an infinite loop.
+
+Bellow is a step-by-step tutorial for environment setup.
 
 ## Environment description
 As prerequisit, the VirtualBox image should be installed on your computer.
