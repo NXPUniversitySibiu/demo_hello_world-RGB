@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 NXP
+ * Copyright 2024 NXP
  * All rights reserved.
  *
  * NXP Confidential. This software is owned or controlled by NXP and may only be
@@ -17,9 +17,12 @@
 #ifdef EVB
 	#define PCC_CLOCK	PCC_PORTD_CLOCK
 	#define LED0_PORT PTD
-	#define LED0_PIN  15
+	#define LED0_PIN  15 // RGB_RED
 	#define LED1_PORT PTD
-	#define LED1_PIN  16
+	#define LED1_PIN  16 // RGB_GREEN
+	#define LED2_PORT PTD
+	#define LED2_PIN  0 // RGB_BLUE
+
 #else
 	#define PCC_CLOCK	PCC_PORTC_CLOCK
 	#define LED0_PORT PTC
@@ -46,17 +49,34 @@ int main(void)
   error = PINS_DRV_Init(NUM_OF_CONFIGURED_PINS0, g_pin_mux_InitConfigArr0);
   DEV_ASSERT(error == STATUS_SUCCESS);
 
-  /* Set Output value LED0 & LED1 */
+  /* Set Output value LED0 & LED1 & LED2 */
   PINS_DRV_SetPins(LED0_PORT, 1 << LED0_PIN);
-  PINS_DRV_ClearPins(LED1_PORT, 1 << LED1_PIN);
+  PINS_DRV_SetPins(LED1_PORT, 1 << LED1_PIN);
+  PINS_DRV_SetPins(LED2_PORT, 1 << LED2_PIN);
 
   for (;;)
   {
       /* Insert a small delay to make the blinking visible */
-      delay(720000);
+      delay(5720000);
 
-      /* Toggle output value LED0 & LED1 */
+      /* Toggle ON RED LED */
+      PINS_DRV_TogglePins(LED0_PORT, 1 << LED0_PIN);
+      delay(5720000);
+      // Toggle ON GREEN LED - to get YELLOW
+      PINS_DRV_TogglePins(LED1_PORT, 1 << LED1_PIN);
+      delay(5720000);
+
+      // Toggle OFF RED and GREEN LED
       PINS_DRV_TogglePins(LED0_PORT, 1 << LED0_PIN);
       PINS_DRV_TogglePins(LED1_PORT, 1 << LED1_PIN);
+	  // Toggle ON BLUE LED
+      PINS_DRV_TogglePins(LED2_PORT, 1 << LED2_PIN);
+
+
+      delay(1520000);
+      // Toggle OFF BLUE LED
+      PINS_DRV_TogglePins(LED2_PORT, 1 << LED2_PIN);
+
+
   }
 }
